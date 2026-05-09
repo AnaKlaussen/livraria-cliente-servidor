@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Livraria</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            background: white;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>📚 Livraria</h1>
+
+<input type="text" id="busca" placeholder="Buscar livro">
+<button onclick="buscar()">Buscar</button>
+
+<button onclick="ordenar()">Ordenar por preço</button>
+
+<ul id="resultado"></ul>
+
+<script>
+let livros = [
+    {titulo: "Python Básico", preco: 50},
+    {titulo: "Java Avançado", preco: 70},
+    {titulo: "C Completo", preco: 30}
+];
+
+function mostrar(lista) {
+    let ul = document.getElementById("resultado");
+    ul.innerHTML = "";
+
+    lista.forEach(l => {
+        let li = document.createElement("li");
+        li.innerText = l.titulo + " - R$" + l.preco;
+        ul.appendChild(li);
+    });
+}
+
+function buscar() {
+    let valor = document.getElementById("busca").value;
+
+    let filtrados = livros.filter(l =>
+        l.titulo.toLowerCase().includes(valor.toLowerCase())
+    );
+
+    mostrar(filtrados);
+}
+
+function ordenar() {
+    let ordenados = [...livros].sort((a, b) => a.preco - b.preco);
+    mostrar(ordenados);
+}
+
+// mostra todos ao abrir
+mostrar(livros);
+</script>
+
+</body>
+</html>
