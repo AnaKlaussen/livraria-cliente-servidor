@@ -31,3 +31,7 @@ def home():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route("/teste")
+def teste():
+    return {"status": "ok"}
